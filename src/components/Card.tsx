@@ -1,11 +1,18 @@
-import React from 'react';
-import {Dimensions, Image, StyleSheet, ImageStyle} from 'react-native';
+import React, {useRef} from 'react';
+import {useEffect} from 'react';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  ImageStyle,
+  Animated,
+} from 'react-native';
 import {DangerouslySetStyle} from '../types/SharedProps';
 
 const {width} = Dimensions.get('window');
 const ratio = 228 / 362;
-const CARD_WIDTH = width * 0.8;
-const CARD_HEIGHT = CARD_WIDTH * ratio;
+export const CARD_WIDTH = width * 0.8;
+export const CARD_HEIGHT = CARD_WIDTH * ratio;
 
 export const assets = [
   require('./assets/cards/card1.png'),
@@ -27,14 +34,48 @@ export enum Cards {
 
 type CardProps = {
   card: Cards;
+  toggled: boolean;
 } & DangerouslySetStyle<ImageStyle>;
 
-export const Card = ({card, ...props}: CardProps) => {
+const alpha = Math.PI / 6;
+
+export const Card = ({card, toggled, ...props}: CardProps) => {
+  const rotation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (toggled) {
+      console.log(toggled);
+      Animated.timing(rotation, {
+        toValue: 100,
+        duration: 6000,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(rotation, {
+        toValue: 0,
+        duration: 6000,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [rotation, toggled]);
+
+  const endDeg = (card - 1) * alpha;
+
+  const interpolatedRotation = rotation.interpolate({
+    inputRange: [0, 100],
+    outputRange: ['0rad', `${endDeg}rad`],
+  });
+
   return (
-    <Image
-      style={[styles.card, props.dangerouslySetStyle]}
-      source={assets[card]}
-    />
+    <Animated.View
+      style={{
+        transform: [{rotate: interpolatedRotation}],
+      }}>
+      <Image
+        style={[styles.card, props.dangerouslySetStyle]}
+        source={assets[card]}
+      />
+    </Animated.View>
   );
 };
 

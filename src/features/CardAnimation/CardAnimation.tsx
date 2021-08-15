@@ -1,28 +1,46 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {range} from 'lodash';
-import {StyleSheet, View} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 import {Card, Cards} from '../../components/Card';
 
 export const CardAnimation = function CardAnimation() {
+  const [toggled, setToggle] = useState(false);
+
   return (
-    <View style={styles.container}>
-      {range(3).map((idx: Cards) => (
-        <Card
-          dangerouslySetStyle={styles.card}
-          key={`card-${idx}`}
-          card={idx}
+    <View>
+      <View
+        style={[
+          {
+            transform: [{translateY: 150}],
+          },
+        ]}>
+        {range(3).map((idx: Cards) => (
+          <Card
+            toggled={toggled}
+            key={`card-${idx}`}
+            dangerouslySetStyle={styles.card}
+            card={idx}
+          />
+        ))}
+      </View>
+      <View style={styles.btnContainer}>
+        <Button
+          title={toggled ? 'Reset' : 'Start'}
+          onPress={() => setToggle(prev => !prev)}
         />
-      ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  btnContainer: {
     position: 'relative',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    bottom: 0,
+  },
+  cardContainer: {
+    position: 'relative',
+    top: '50%',
   },
   card: {
     position: 'absolute',
