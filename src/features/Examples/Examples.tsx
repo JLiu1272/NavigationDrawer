@@ -22,10 +22,9 @@ export const Examples = function Examples() {
     <SafeAreaView>
       <ScrollView style={styles.container}>
         {examples.map(example => (
-          <View style={styles.btn}>
+          <View style={styles.btn} key={example.title}>
             <Button
               title={example.title}
-              key={example.title}
               onPress={() => navigate(example.title as keyof Routes)}
             />
           </View>

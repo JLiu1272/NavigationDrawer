@@ -1,5 +1,6 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet} from 'react-native';
+import {Dimensions, Image, StyleSheet, ImageStyle} from 'react-native';
+import {DangerouslySetStyle} from '../types/SharedProps';
 
 const {width} = Dimensions.get('window');
 const ratio = 228 / 362;
@@ -26,10 +27,15 @@ export enum Cards {
 
 type CardProps = {
   card: Cards;
-};
+} & DangerouslySetStyle<ImageStyle>;
 
-export const Card = ({card}: CardProps) => {
-  return <Image style={styles.card} source={assets[card]} />;
+export const Card = ({card, ...props}: CardProps) => {
+  return (
+    <Image
+      style={[styles.card, props.dangerouslySetStyle]}
+      source={assets[card]}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
