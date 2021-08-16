@@ -46,7 +46,7 @@ export const Card = ({card, toggled, ...props}: CardProps) => {
     if (toggled) {
       console.log(toggled);
       Animated.timing(rotation, {
-        toValue: 100,
+        toValue: 1,
         duration: 6000,
         useNativeDriver: true,
       }).start();
@@ -62,7 +62,7 @@ export const Card = ({card, toggled, ...props}: CardProps) => {
   const endDeg = (card - 1) * alpha;
 
   const interpolatedRotation = rotation.interpolate({
-    inputRange: [0, 100],
+    inputRange: [0, 1],
     outputRange: ['0rad', `${endDeg}rad`],
   });
 
