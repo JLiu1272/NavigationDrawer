@@ -1,31 +1,52 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, StyleSheet} from 'react-native';
+import {Animated, StyleSheet, View} from 'react-native';
 
 export const SimpleAnimation = function SimpleAnimation() {
-  const translation = useRef(new Animated.Value(0)).current;
+  const springTranslate = useRef(new Animated.Value(0)).current;
+  const timingTranslate = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(translation, {
-      toValue: 50,
+    Animated.timing(timingTranslate, {
+      toValue: 100,
       useNativeDriver: true,
     }).start();
-  }, [translation]);
+
+    Animated.spring(springTranslate, {
+      toValue: 100,
+      useNativeDriver: true,
+    }).start();
+  }, [springTranslate, timingTranslate]);
 
   return (
-    <Animated.View
-      style={[
-        styles.box,
-        {
-          transform: [{translateX: translation}],
-        },
-      ]}
-    />
+    <View>
+      <Animated.View
+        style={[
+          styles.boxTiming,
+          {
+            transform: [{translateX: timingTranslate}],
+          },
+        ]}
+      />
+      <Animated.View
+        style={[
+          styles.boxSpring,
+          {
+            transform: [{translateX: springTranslate}],
+          },
+        ]}
+      />
+    </View>
   );
 };
 const styles = StyleSheet.create({
-  box: {
+  boxSpring: {
     width: 100,
     height: 100,
     backgroundColor: 'orange',
+  },
+  boxTiming: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
   },
 });
