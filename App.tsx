@@ -13,6 +13,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './src/components/Routes';
 import {Examples} from './src/features/Examples/Examples';
 import {CardAnimation} from './src/features/CardAnimation';
+import {SimpleAnimation} from './src/features/SimpleAnimation';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -54,6 +55,13 @@ const AppNavigator = () => (
       component={CardAnimation}
       options={{
         title: 'Card Animation',
+      }}
+    />
+    <Stack.Screen
+      name="SimpleAnimation"
+      component={SimpleAnimation}
+      options={{
+        title: 'Card SimpleAnimation',
       }}
     />
   </Stack.Navigator>

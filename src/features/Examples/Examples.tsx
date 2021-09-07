@@ -13,6 +13,10 @@ const examples = [
     screen: 'Home',
     title: 'Home',
   },
+  {
+    screen: 'SimpleAnimation',
+    title: 'SimpleAnimation',
+  },
 ];
 
 export const Examples = function Examples() {
