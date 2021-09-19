@@ -3,4 +3,5 @@ export type Routes = {
   CardAnimation: undefined;
   SimpleAnimation: undefined;
   Home: undefined;
+  CompositAnimation: undefined;
 };

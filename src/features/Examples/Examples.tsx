@@ -17,6 +17,10 @@ const examples = [
     screen: 'SimpleAnimation',
     title: 'SimpleAnimation',
   },
+  {
+    screen: 'CompositAnimation',
+    title: 'CompositAnimation',
+  },
 ];
 
 export const Examples = function Examples() {

@@ -14,6 +14,7 @@ import {Routes} from './src/components/Routes';
 import {Examples} from './src/features/Examples/Examples';
 import {CardAnimation} from './src/features/CardAnimation';
 import {SimpleAnimation} from './src/features/SimpleAnimation';
+import {CompositAnimation} from './src/features/CompositAnimation';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -62,6 +63,13 @@ const AppNavigator = () => (
       component={SimpleAnimation}
       options={{
         title: 'Card SimpleAnimation',
+      }}
+    />
+    <Stack.Screen
+      name="CompositAnimation"
+      component={CompositAnimation}
+      options={{
+        title: 'Composit Animation Example',
       }}
     />
   </Stack.Navigator>
