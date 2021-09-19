@@ -16,6 +16,7 @@ import {CardAnimation} from './src/features/CardAnimation';
 import {SimpleAnimation} from './src/features/SimpleAnimation';
 import {CompositAnimation} from './src/features/CompositAnimation';
 import {Interpolation} from './src/features/Interpolation';
+import {ScrollViewAnimation} from './src/features/ScrollViewAnimation';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -78,6 +79,13 @@ const AppNavigator = () => (
       component={Interpolation}
       options={{
         title: 'Interpolation Animation Example',
+      }}
+    />
+    <Stack.Screen
+      name="ScrollViewAnimation"
+      component={ScrollViewAnimation}
+      options={{
+        title: 'ScrollView Animation Example',
       }}
     />
   </Stack.Navigator>

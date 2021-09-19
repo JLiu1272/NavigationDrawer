@@ -25,6 +25,10 @@ const examples = [
     screen: 'Interpolation',
     title: 'Interpolation',
   },
+  {
+    screen: 'ScrollViewAnimation',
+    title: 'ScrollViewAnimation',
+  },
 ];
 
 export const Examples = function Examples() {
