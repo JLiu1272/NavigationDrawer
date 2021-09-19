@@ -29,6 +29,10 @@ const examples = [
     screen: 'ScrollViewAnimation',
     title: 'ScrollViewAnimation',
   },
+  {
+    screen: 'Gestures',
+    title: 'Gestures',
+  },
 ];
 
 export const Examples = function Examples() {

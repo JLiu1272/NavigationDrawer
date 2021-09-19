@@ -17,6 +17,7 @@ import {SimpleAnimation} from './src/features/SimpleAnimation';
 import {CompositAnimation} from './src/features/CompositAnimation';
 import {Interpolation} from './src/features/Interpolation';
 import {ScrollViewAnimation} from './src/features/ScrollViewAnimation';
+import {Gestures} from './src/features/Gestures';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -86,6 +87,13 @@ const AppNavigator = () => (
       component={ScrollViewAnimation}
       options={{
         title: 'ScrollView Animation Example',
+      }}
+    />
+    <Stack.Screen
+      name="Gestures"
+      component={Gestures}
+      options={{
+        title: 'Gestures Example',
       }}
     />
   </Stack.Navigator>

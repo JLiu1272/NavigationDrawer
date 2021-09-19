@@ -6,4 +6,5 @@ export type Routes = {
   CompositAnimation: undefined;
   Interpolation: undefined;
   ScrollViewAnimation: undefined;
+  Gestures: undefined;
 };
