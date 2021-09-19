@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useCallback, useState} from 'react';
-import {Animated, Button, View, Text, StyleSheet} from 'react-native';
+import {Animated, Button, View, Text} from 'react-native';
 
 const compositTypes = ['sequence', 'parallel', 'mix'];
 
