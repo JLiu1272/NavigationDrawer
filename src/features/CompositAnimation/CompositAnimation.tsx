@@ -1,5 +1,7 @@
 import React, {useRef, useEffect, useCallback, useState} from 'react';
-import {Animated, Button, View, Text} from 'react-native';
+import {Animated, Button, View, Text, StyleSheet} from 'react-native';
+
+const compositTypes = ['sequence', 'parallel', 'mix'];
 
 export const CompositAnimation = () => {
   const translation = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
@@ -39,26 +41,51 @@ export const CompositAnimation = () => {
     ]).start();
   }, [translation]);
 
-  useEffect(() => {
-    if (compositType === 'parallel') {
-      console.log('Parallel');
-      parallelAnimation();
-    }
+  const mixAnimation = useCallback(() => {
+    Animated.sequence([
+      Animated.spring(translation.x, {
+        toValue: 100,
+        useNativeDriver: true,
+      }),
+      Animated.parallel([
+        Animated.spring(translation.x, {
+          toValue: 20,
+          useNativeDriver: true,
+        }),
+        Animated.spring(translation.y, {
+          toValue: -20,
+          useNativeDriver: true,
+        }),
+      ]),
+    ]).start();
+  }, [translation]);
 
-    if (compositType === 'sequence') {
-      console.log('Sequencing');
-      sequenceAnimation();
+  useEffect(() => {
+    switch (compositType) {
+      default:
+      case 'parallel':
+        parallelAnimation();
+        break;
+      case 'sequence':
+        sequenceAnimation();
+        break;
+      case 'mix':
+        mixAnimation();
+        break;
     }
-  }, [sequenceAnimation, parallelAnimation, compositType]);
+  }, [sequenceAnimation, parallelAnimation, mixAnimation, compositType]);
 
   return (
     <View>
-      <Button
-        title="Toggle Composit Type"
-        onPress={() =>
-          setCompositType(compositType === 'parallel' ? 'sequence' : 'parallel')
-        }
-      />
+      {compositTypes.map(type => (
+        <View style={{padding: 5}}>
+          <Button
+            title={type}
+            key={type}
+            onPress={() => setCompositType(type)}
+          />
+        </View>
+      ))}
       <Text>{compositType}</Text>
       <Animated.View
         style={{
