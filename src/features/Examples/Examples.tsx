@@ -34,6 +34,10 @@ const examples = [
     title: 'Gestures',
   },
   {
+    screen: 'AdvancedGestures',
+    title: 'AdvancedGestures',
+  },
+  {
     screen: 'Rating',
     title: 'Rating',
   },

@@ -7,5 +7,6 @@ export type Routes = {
   Interpolation: undefined;
   ScrollViewAnimation: undefined;
   Gestures: undefined;
+  AdvancedGestures: undefined;
   Rating: undefined;
 };

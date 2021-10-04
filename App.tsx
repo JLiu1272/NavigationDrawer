@@ -17,6 +17,7 @@ import {SimpleAnimation} from './src/features/SimpleAnimation';
 import {CompositAnimation} from './src/features/CompositAnimation';
 import {Interpolation} from './src/features/Interpolation';
 import {ScrollViewAnimation} from './src/features/ScrollViewAnimation';
+import {AdvancedGestures} from './src/features/Gestures/AdvancedGestures';
 import {Gestures} from './src/features/Gestures';
 import {Rating} from './src/features/Rating';
 import {View, Text} from 'react-native';
@@ -95,6 +96,13 @@ const AppNavigator = () => (
       component={Gestures}
       options={{
         title: 'Gestures Example',
+      }}
+    />
+    <Stack.Screen
+      name="AdvancedGestures"
+      component={AdvancedGestures}
+      options={{
+        title: 'AdvancedGestures Example',
       }}
     />
     <Stack.Screen
