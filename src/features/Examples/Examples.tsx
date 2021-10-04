@@ -33,6 +33,10 @@ const examples = [
     screen: 'Gestures',
     title: 'Gestures',
   },
+  {
+    screen: 'Rating',
+    title: 'Rating',
+  },
 ];
 
 export const Examples = function Examples() {

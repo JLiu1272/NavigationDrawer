@@ -1,11 +1,11 @@
 import {StyleProp} from 'react-native';
 
-type ComponentProps = {
+export type ComponentStyleProps = {
   style?: StyleProp<{}>;
 };
 
 export type OmitStyle<
-  Props extends ComponentProps,
+  Props extends ComponentStyleProps,
   ExtraProps extends string = '',
 > = Omit<Props, 'style' | ExtraProps>;
 

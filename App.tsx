@@ -18,6 +18,7 @@ import {CompositAnimation} from './src/features/CompositAnimation';
 import {Interpolation} from './src/features/Interpolation';
 import {ScrollViewAnimation} from './src/features/ScrollViewAnimation';
 import {Gestures} from './src/features/Gestures';
+import {Rating} from './src/features/Rating';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -94,6 +95,13 @@ const AppNavigator = () => (
       component={Gestures}
       options={{
         title: 'Gestures Example',
+      }}
+    />
+    <Stack.Screen
+      name="Rating"
+      component={Rating}
+      options={{
+        title: 'Rating Example',
       }}
     />
   </Stack.Navigator>
