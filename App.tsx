@@ -17,6 +17,7 @@ import {SimpleAnimation} from './src/features/SimpleAnimation';
 import {CompositAnimation} from './src/features/CompositAnimation';
 import {Interpolation} from './src/features/Interpolation';
 import {ScrollViewAnimation} from './src/features/ScrollViewAnimation';
+import {PanGesture} from './src/features/Gestures/PanGesture';
 import {AdvancedGestures} from './src/features/Gestures/AdvancedGestures';
 import {Gestures} from './src/features/Gestures';
 import {Rating} from './src/features/Rating';
@@ -103,6 +104,13 @@ const AppNavigator = () => (
       component={AdvancedGestures}
       options={{
         title: 'AdvancedGestures Example',
+      }}
+    />
+    <Stack.Screen
+      name="PanGesture"
+      component={PanGesture}
+      options={{
+        title: 'PanGesture Example',
       }}
     />
     <Stack.Screen

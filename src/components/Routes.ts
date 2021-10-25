@@ -8,5 +8,6 @@ export type Routes = {
   ScrollViewAnimation: undefined;
   Gestures: undefined;
   AdvancedGestures: undefined;
+  PanGesture: undefined;
   Rating: undefined;
 };

@@ -1,42 +1,74 @@
 import React, {useCallback, useEffect, useRef} from 'react';
-import {Animated} from 'react-native';
+import {Animated, View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {PanGestureHandler} from 'react-native-gesture-handler';
+
+const tag = '[GESTURE]';
 
 export const Heart = () => {
-  const backgroundColor = useRef(new Animated.Value(0)).current;
+  const translate = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
 
-  const fadeIn = useCallback(() => {
-    Animated.timing(backgroundColor, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-  }, [backgroundColor]);
+  const handleGesture = Animated.event(
+    [
+      {
+        nativeEvent: {
+          x: translate.x,
+          y: translate.y,
+        },
+      },
+    ],
+    {useNativeDriver: true},
+  );
 
-  useEffect(() => {
-    fadeIn();
-  }, [fadeIn]);
+  const capX = () => {
+    return translate.x;
+  };
+
+  const animateRating = {
+    transform: [
+      {
+        translateX: translate.x,
+      },
+    ],
+  };
+
+  const _onGestureStateChange = (e: {nativeEvent: any}) => {
+    console.log(tag, e.nativeEvent);
+  };
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          backgroundColor: backgroundColor.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['transparent', 'blue'],
-          }),
-        },
-      ]}
-    />
+    <View style={styles.outer_container}>
+      <View style={[styles.container, styles.bottom]} />
+      <PanGestureHandler
+        onGestureEvent={handleGesture}
+        onHandlerStateChange={_onGestureStateChange}>
+        <Animated.View style={[styles.top, animateRating]} />
+      </PanGestureHandler>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  outer_container: {
+    position: 'relative',
+    width: 80,
+    height: 80,
+    backgroundColor: 'pink',
+  },
+  bottom: {
+    zIndex: 1,
+  },
+  top: {
+    zIndex: 2,
+    width: 50,
+    height: 50,
+    backgroundColor: 'red',
+  },
   container: {
     width: 50,
     height: 50,
     borderWidth: 5,
+    position: 'absolute',
     borderColor: 'black',
     borderRadius: 40,
   },

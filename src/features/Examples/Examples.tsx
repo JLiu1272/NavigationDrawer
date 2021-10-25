@@ -38,6 +38,10 @@ const examples = [
     title: 'AdvancedGestures',
   },
   {
+    screen: 'PanGesture',
+    title: 'PanGesture',
+  },
+  {
     screen: 'Rating',
     title: 'Rating',
   },
